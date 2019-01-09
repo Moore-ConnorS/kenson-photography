@@ -1,8 +1,38 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios'
 import './Header.css';
 
 export default class Header extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            user: null
+        }
+    }
+
+    componentDidMount() {
+        axios.get('/api/user-data').then(res => {
+            this.setState({
+                user: res.data
+            })
+        })
+    }
+
+    login() {
+        const redirectUri = encodeURIComponent(window.location.origin + '/auth/callback')
+        window.location = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${process.env.REACT_APP_AUTH0_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+    }
+
+    logout = () => {
+        axios.post('/api/logout').then(() => {
+            this.setState({
+                user: null
+            })
+        })
+    }
+
+
     render() {
         return (
             <header>
@@ -12,6 +42,11 @@ export default class Header extends React.Component {
                 <NavLink className='navLink' to='/prints'>
                     Prints
                 </NavLink>
+                <NavLink className='navLink' to='/cart'>
+                    Cart
+                </NavLink>
+                <button onClick={this.login}>Log In</button>
+                <button onClick={this.logout}>Logout</button>
             </header>
         )
     }

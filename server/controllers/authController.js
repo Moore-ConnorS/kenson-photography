@@ -22,12 +22,11 @@ module.exports = {
 
         function storeUserInfoInDataBase(response) {
             const user = response.data;
-            console.log('user', response.data)
-            console.log('user sub', user.sub)
             return req.app.get('db').find_user([user.sub]).then(users => {
                 console.log(users)
                 if (users.length) {
                     req.session.user = {
+                        id: users[0].id,
                         auth0_id: users[0].auth0_id,
                         name: users[0].name,
                         picture: users[0].picture,
@@ -36,6 +35,7 @@ module.exports = {
                     res.redirect('/')
                 } else {
                     return req.app.get('db').create_user({
+                        id: user.id,
                         auth0_id: user.sub,
                         email: user.email,
                         name: user.name,

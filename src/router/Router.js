@@ -12,7 +12,7 @@ export default class Router extends Component {
             <div>
                 <Switch>
                     <Route path='/photo/:id' component={SinglePhoto} />
-                    <Route path='/cart' component={Cart} />
+                    <Route path='/cart/:id' component={Cart} />
                     <Route path='/prints' component={Marketplace} />
                     <Route path='/' component={Dashboard} />
                 </Switch>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import './SinglePhoto.css'
 
 export default class SinglePhoto extends Component {
     constructor() {
@@ -23,14 +24,16 @@ export default class SinglePhoto extends Component {
 
     render() {
         const { photo } = this.state
-        const singlePhoto = photo.map(photo => {
+        const singlePhoto = photo.length ? photo.map(photo => {
             return (
                 <div key={photo.id}>
-                    <img src={photo.img} />
+                    <img className='singlePhoto' src={photo.img} />
+                    <br />
                     {photo.description}
+                    <button>Add To Cart</button>
                 </div>
             )
-        })
+        }) : <div>Loading...</div>
         return (
             <div>
                 {singlePhoto}

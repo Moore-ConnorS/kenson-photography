@@ -8,4 +8,5 @@ header {
 .navLink {
     color: white;
     text-decoration: none;
+    margin: 10px;
 }

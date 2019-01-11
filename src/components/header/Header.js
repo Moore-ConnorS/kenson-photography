@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import { withRouter } from 'react-router'
 import './Header.css';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -42,7 +43,7 @@ export default class Header extends React.Component {
                 <NavLink className='navLink' to='/prints'>
                     Prints
                 </NavLink>
-                <NavLink className='navLink' to='/cart'>
+                <NavLink className='navLink' to={this.state.user ? `/cart/${this.state.user.id}` : '/'}>
                     Cart
                 </NavLink>
                 <button onClick={this.login}>Log In</button>
@@ -51,3 +52,5 @@ export default class Header extends React.Component {
         )
     }
 }
+
+export default withRouter(Header)

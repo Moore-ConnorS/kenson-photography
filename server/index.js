@@ -6,6 +6,7 @@ require('dotenv').config()
 
 const photoController = require('./controllers/photoController')
 const authController = require('./controllers/authController')
+const cartController = require('./controllers/cartController')
 
 const app = express()
 app.use(bodyParser.json())
@@ -39,6 +40,20 @@ app.post('/api/logout', (req, res) => {
     req.session.destroy();
     res.send();
 });
+
+function checkForLog(req, res, next) {
+    if (req.session.user) {
+        next()
+    } else {
+        res.status(403).send(console.log('Must log in to purchase'))
+    }
+}
+
+// Cart Endpoints
+
+app.get('/api/cart/:id', checkForLog, cartController.getCart)
+app.post('/api/cart/:id', checkForLog, cartController.addCart)
+app.delete('/api/cart/:id', checkForLog, cartController.deleteCart)
 
 const PORT = 3006
 app.listen(PORT, () => {

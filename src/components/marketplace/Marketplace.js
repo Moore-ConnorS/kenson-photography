@@ -23,10 +23,15 @@ export default class Marketplace extends Component {
         })
     }
 
+    addToCart = (id) => {
+        axios.post(`/api/cart/${id}`)
+    }
+
 
 
     render() {
         const { photos } = this.state
+        console.log(this.state.photos)
         const photoDash = photos.length ? photos.map(photo => {
             return (
                 <div key={photo.id}>
@@ -35,6 +40,9 @@ export default class Marketplace extends Component {
                             <img className='photo' alt='from database' src={photo.img} />
                         </Link>
                         {photo.description}
+                        <br />
+                        ${photo.price}
+                        <button onClick={() => this.addToCart(photo.id)}>Add To Cart</button>
                     </div>
                 </div>
             )

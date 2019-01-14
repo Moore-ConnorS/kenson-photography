@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import StripeCheckout from 'react-stripe-checkout'
 
 import './Cart.css'
 
@@ -48,6 +49,15 @@ export default class Cart extends Component {
         })
     }
 
+    onToken = (token) => {
+        console.log(token)
+        const { orderTotal } = this.state
+        axios.post('/stripe', { token, orderTotal })
+            .then(() => alert('payment successful')
+            )
+    }
+
+
 
     render() {
         const { items, orderTotal } = this.state
@@ -64,7 +74,17 @@ export default class Cart extends Component {
         })
         return (
             <div>
-                <button onClick={this.addOrder}>Purchase</button>
+                {/* <button onClick={this.addOrder}>Purchase</button> */}
+                <StripeCheckout
+                    ComponentClass="stripe"
+                    email='email@email.com'
+                    amount={this.state.orderTotal * 100}
+                    description=""
+                    token={this.onToken}
+                    allowRememberMe={false}
+                    //Publishable key
+                    stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                />
                 <br />
                 Total: {orderTotal}
                 <div className='cartContainer'>

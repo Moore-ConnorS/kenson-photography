@@ -4,6 +4,8 @@ const massive = require('massive');
 const session = require('express-session')
 require('dotenv').config()
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
+
 const photoController = require('./controllers/photoController')
 const authController = require('./controllers/authController')
 const cartController = require('./controllers/cartController')
@@ -59,6 +61,21 @@ app.delete('/api/cart/:id', checkForLog, cartController.deleteCart)
 //  Order Endpoints
 
 app.post('/api/order', orderController.addOrder)
+
+// Stripe Endpoint
+
+app.post('/stripe', (req, res) => {
+    // console.log('--------------req.body', req.body)
+    const { orderTotal } = req.body
+    stripe.charges.create({
+        source: req.body.token.id,
+        amount: orderTotal * 100,
+        currency: 'usd',
+        description: 'Buying rights to selected photos'
+    }).catch(err => {
+        res.status(500).send(console.log('Error in stripe endpoint', err))
+    })
+})
 
 const PORT = 3006
 app.listen(PORT, () => {

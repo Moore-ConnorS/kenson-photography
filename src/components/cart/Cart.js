@@ -38,6 +38,16 @@ export default class Cart extends Component {
         })
     }
 
+    // axios posting total to orders table 
+
+    addOrder = () => {
+        axios.post(`/api/order`, this.state)
+        this.setState({
+            items: [],
+            orderTotal: 0
+        })
+    }
+
 
     render() {
         const { items, orderTotal } = this.state
@@ -54,7 +64,7 @@ export default class Cart extends Component {
         })
         return (
             <div>
-                <button>Purchase</button>
+                <button onClick={this.addOrder}>Purchase</button>
                 <br />
                 Total: {orderTotal}
                 <div className='cartContainer'>

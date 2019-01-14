@@ -7,6 +7,7 @@ require('dotenv').config()
 const photoController = require('./controllers/photoController')
 const authController = require('./controllers/authController')
 const cartController = require('./controllers/cartController')
+const orderController = require('./controllers/orderController')
 
 const app = express()
 app.use(bodyParser.json())
@@ -31,15 +32,15 @@ app.delete('/api/photos/:id', photoController.deletePhoto)
 
 // Login Endpoint
 app.get('/auth/callback', authController.login)
-
 app.get('/api/user-data', (req, res) => {
     res.send(req.session.user)
 })
-
 app.post('/api/logout', (req, res) => {
     req.session.destroy();
     res.send();
 });
+
+// Cheeky Middleware
 
 function checkForLog(req, res, next) {
     if (req.session.user) {
@@ -54,6 +55,10 @@ function checkForLog(req, res, next) {
 app.get('/api/cart/:id', checkForLog, cartController.getCart)
 app.post('/api/cart/:id', checkForLog, cartController.addCart)
 app.delete('/api/cart/:id', checkForLog, cartController.deleteCart)
+
+//  Order Endpoints
+
+app.post('/api/order', orderController.addOrder)
 
 const PORT = 3006
 app.listen(PORT, () => {

@@ -13,6 +13,7 @@ const orderController = require('./controllers/orderController')
 
 const app = express()
 app.use(bodyParser.json())
+app.use(express.static(`${__dirname}/../build`));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
@@ -24,6 +25,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 }).catch(err => {
     console.log('Something bad happened in db setup', err)
 })
+
 
 // Photo DB Endpoints
 app.get('/api/photos', photoController.allPhotos)
@@ -61,6 +63,7 @@ app.delete('/api/cart/:id', checkForLog, cartController.deleteCart)
 //  Order Endpoints
 
 app.post('/api/order', orderController.addOrder)
+app.delete('/api/order/:id', orderController.deleteAllCart)
 
 // Stripe Endpoint
 
@@ -80,4 +83,9 @@ app.post('/stripe', (req, res) => {
 const PORT = 3006
 app.listen(PORT, () => {
     console.log(`Ship docked at port ${PORT}`)
+})
+
+const path = require('path')
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 })

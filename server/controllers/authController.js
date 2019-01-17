@@ -23,7 +23,7 @@ module.exports = {
         function storeUserInfoInDataBase(response) {
             const user = response.data;
             return req.app.get('db').find_user([user.sub]).then(users => {
-                console.log(users)
+                // console.log(users)
                 if (users.length) {
                     req.session.user = {
                         id: users[0].id,

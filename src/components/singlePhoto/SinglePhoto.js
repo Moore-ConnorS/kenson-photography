@@ -30,7 +30,6 @@ export default class SinglePhoto extends Component {
                     <img className='singlePhoto' src={photo.img} />
                     <br />
                     {photo.description}
-                    <button>Add To Cart</button>
                 </div>
             )
         }) : <div>Loading...</div>

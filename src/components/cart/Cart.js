@@ -3,6 +3,7 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout'
 
 import './Cart.css'
+import { timingSafeEqual } from 'crypto';
 
 export default class Cart extends Component {
     constructor() {
@@ -39,22 +40,26 @@ export default class Cart extends Component {
         })
     }
 
+    deleteAllCart = () => {
+        axios.delete(`/api/order/${this.state.items[0].user_id}`).then(() => {
+            this.getCart()
+        })
+    }
+
     // axios posting total to orders table 
 
     addOrder = () => {
         axios.post(`/api/order`, this.state)
-        this.setState({
-            items: [],
-            orderTotal: 0
-        })
+
     }
 
     onToken = (token) => {
-        console.log(token)
         const { orderTotal } = this.state
         axios.post('/stripe', { token, orderTotal })
             .then(() => alert('payment successful')
             )
+        this.addOrder()
+        this.deleteAllCart()
     }
 
 
@@ -75,6 +80,7 @@ export default class Cart extends Component {
         return (
             <div>
                 {/* <button onClick={this.addOrder}>Purchase</button> */}
+                {/* <button onClick={this.addOrder}> */}
                 <StripeCheckout
                     ComponentClass="stripe"
                     email='email@email.com'
@@ -85,6 +91,7 @@ export default class Cart extends Component {
                     //Publishable key
                     stripeKey={process.env.REACT_APP_STRIPE_KEY}
                 />
+                {/* </button> */}
                 <br />
                 Total: {orderTotal}
                 <div className='cartContainer'>

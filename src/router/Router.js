@@ -5,6 +5,7 @@ import Dashboard from './../components/dashboard/Dashboard';
 import Marketplace from './../components/marketplace/Marketplace';
 import SinglePhoto from './../components/singlePhoto/SinglePhoto';
 import Cart from './../components/cart/Cart';
+import Admin from './../components/admin/Admin';
 
 export default class Router extends Component {
     render() {
@@ -13,8 +14,8 @@ export default class Router extends Component {
                 <Switch>
                     <Route path='/photo/:id' component={SinglePhoto} />
                     <Route path='/cart/:id' component={Cart} />
-                    <Route path='/prints' component={Marketplace} />
-                    <Route path='/' component={Dashboard} />
+                    <Route path='/admin' component={Admin} />
+                    <Route path='/' component={Marketplace} />
                 </Switch>
             </div>
         )

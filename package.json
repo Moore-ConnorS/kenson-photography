@@ -13,8 +13,10 @@
     "massive": "^5.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-modal": "^3.8.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-slick": "^0.23.2",
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^6.20.0"
   },

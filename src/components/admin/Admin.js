@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Modal from 'react-modal'
+import './Admin.css'
 
 import Edit from './Edit'
 
@@ -73,7 +74,6 @@ export default class Admin extends Component {
 
     openModalUno = (id) => {
         axios.get(`/api/photos/${id}`).then((res) => {
-            console.log(res.data[0].id)
             this.setState({
                 photo: res.data[0],
                 modalUno: true
@@ -112,13 +112,7 @@ export default class Admin extends Component {
                     <br />
                     ${photo.price}
                     <button onClick={() => { this.deletePhotos(photo.id) }}>Delete</button>
-                    <button onClick={() => this.openModalUno(photo.id)}>Edit Description</button>
-                    {/* <Modal isOpen={this.state.modalUno} onRequestClose={this.closeModalUno}>
-                        <button onClick={this.closeModalUno}>Close</button>
-                        <Edit description={photo.description}
-                            img={photo.img}
-                            id={photo.id} />
-                    </Modal> */}
+                    <button onClick={() => this.openModalUno(photo.id)}>Edit</button>
                 </div >
             )
         })
@@ -129,7 +123,9 @@ export default class Admin extends Component {
                     <button onClick={this.closeModalUno}>Close</button>
                     <Edit description={this.state.photo.description}
                         img={this.state.photo.img}
-                        id={this.state.photo.id} />
+                        id={this.state.photo.id}
+                        price={this.state.photo.price}
+                    />
                 </Modal>
                 <button onClick={this.openModalTwo}>Add Photo</button>
                 <Modal isOpen={this.state.modalTwo} onRequestClose={this.closeModalTwo}>

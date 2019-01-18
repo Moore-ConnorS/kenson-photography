@@ -9,7 +9,8 @@ class Header extends React.Component {
         super()
         this.state = {
             user: [],
-            adminCheck: false
+            adminCheck: false,
+            toggle: false
         }
     }
 
@@ -40,40 +41,81 @@ class Header extends React.Component {
         })
     }
 
+    toggler = () => {
+        this.setState((prevState) => {
+            return {
+                toggle: !prevState.toggle
+            }
+        })
+    }
+
     render() {
-        console.log(this.state.adminCheck)
+        console.log('toggler', this.state.toggle)
         return (
-            <header>
-                <div className='flexbone'>
-                    <div className='navBox'>
-                        <div className='logo'></div>
-                        <h1>Kenson Photography</h1>
-                        <div className='menu'>
+            <div>
+
+                <header>
+                    <div className='flexbone'>
+                        <div className='navBox'>
+                            <div className='logo'></div>
                             <NavLink className='link' exact to='/'>
-                                <div className='navLink'>
-                                    Home
-                            </div>
+                                <h1>Kenson Photography</h1>
                             </NavLink>
-                            <NavLink className='link' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
-                                <div className='navLink'>
-                                    Cart
+                            <div className='menu'>
+                                <NavLink className='link' exact to='/'>
+                                    <div className='navLink'>
+                                        Home
                             </div>
-                            </NavLink>
-                            {this.state.adminCheck ? <NavLink className='link' to='/admin'>
-                                <div className='navLink'>
-                                    Admin
+                                </NavLink>
+                                <NavLink className='link' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
+                                    <div className='navLink'>
+                                        {this.state.user ? 'Cart' : <div style={{ fontSize: '16px', margin: '-7px' }}>Login to Shop</div>}
+                                    </div>
+                                </NavLink>
+                                {this.state.adminCheck ? <NavLink className='link' to='/admin'>
+                                    <div className='navLink'>
+                                        Admin
                             </div>
-                            </NavLink> : null}
+                                </NavLink> : null}
+                            </div>
                         </div>
+                        <div className='userContainer'>
+                            {this.state.user ? <h3>{this.state.user.name}</h3> : <button className='headerButton' onClick={this.login}>Log In</button>}
+                            <NavLink to='/'>
+                                {this.state.user ? <button className='headerButton' onClick={this.logout}>Logout</button> : null}
+                            </NavLink>
+                        </div>
+                        {/* ----------------- Responsive Hamburger Menu ----------------------- */}
+                        <div className='burgerMenu' onClick={this.toggler}></div>
                     </div>
-                    <div className='userContainer'>
-                        {this.state.user ? <h3>{this.state.user.name}</h3> : <button className='headerButton' onClick={this.login}>Log In</button>}
-                        <NavLink to='/'>
-                            {this.state.user ? <button className='headerButton' onClick={this.logout}>Logout</button> : null}
+                </header>
+                <div>
+                    <div className={this.state.toggle ? 'resMenu' : 'hide'}>
+                        <div className='resUser'>
+
+                            {this.state.user ? <h3>{this.state.user.name}</h3> : <button className='headerButton' onClick={this.login}>Log In</button>}
+                            <NavLink to='/'>
+                                {this.state.user ? <button className='headerButton' onClick={this.logout}>Logout</button> : null}
+                            </NavLink>
+                        </div>
+                        <NavLink className='link' exact to='/'>
+                            <div className='navLink'>
+                                Home
+                            </div>
                         </NavLink>
+                        <NavLink className='link' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
+                            <div className='navLink'>
+                                Cart
+                            </div>
+                        </NavLink>
+                        {this.state.adminCheck ? <NavLink className='link' to='/admin'>
+                            <div className='navLink'>
+                                Admin
+                            </div>
+                        </NavLink> : null}
                     </div>
                 </div>
-            </header>
+            </div>
         )
     }
 }

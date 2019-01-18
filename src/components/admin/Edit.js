@@ -7,7 +7,8 @@ export default class Edit extends Component {
         this.state = {
             description: this.props.description,
             img: this.props.img,
-            id: this.props.id
+            id: this.props.id,
+            price: this.props.price
         }
     }
 
@@ -21,13 +22,20 @@ export default class Edit extends Component {
         })
     }
 
+    handlePrice = (e) => {
+        this.setState({
+            price: e.target.value
+        })
+    }
+
 
     render() {
 
         return (
-            <div>
+            <div className='editContainer'>
                 <img src={this.state.img} />
                 <textarea value={this.state.description} onChange={this.handleDescription} />
+                <input value={this.state.price} onChange={this.handlePrice} />
                 <button onClick={this.editPhotos}>Save</button>
             </div>
         )

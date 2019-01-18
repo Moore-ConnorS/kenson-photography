@@ -33,7 +33,8 @@ module.exports = {
         const db = req.app.get('db')
         db.edit_photo([
             req.params.id,
-            req.body.description
+            req.body.description,
+            req.body.price
         ]).then(() => {
             res.send()
         }).catch(err => {

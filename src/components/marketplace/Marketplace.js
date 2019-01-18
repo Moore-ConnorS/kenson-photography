@@ -43,11 +43,13 @@ export default class Marketplace extends Component {
                                     <div className='swipeContent'>
                                         <div className='photoDesc'>
                                             {photo.description}
+                                        </div>
+                                        <div className='price'>
                                             ${photo.price}
                                         </div>
-                                        <button onClick={() => this.addToCart(photo.id)}>Add To Cart</button>
+                                        <button className='photoButton cartButton' onClick={() => this.addToCart(photo.id)}>Add To Cart</button>
                                         <Link to={`/photo/${photo.id}`}>
-                                            <button>View</button>
+                                            <button className='photoButton' >View</button>
                                         </Link>
                                     </div>
                                 </div>

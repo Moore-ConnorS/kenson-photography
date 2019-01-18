@@ -11,7 +11,7 @@ export default class Slideshow extends Component {
             slidesToScroll: 1,
             autoplay: true,
             speed: 2000,
-            autoplaySpeed: 5000,
+            autoplaySpeed: 4000,
             cssEase: "linear"
         };
         console.log(this.props.photos)

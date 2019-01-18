@@ -40,9 +40,11 @@ export default class Marketplace extends Component {
                         <div className='marketImgCont'>
                             <div className='photo' alt='from database' style={{ backgroundImage: `url(${photo.img})`, backgroundSize: 'cover' }}>
                                 <div className='overlay'>
-                                    <div>
-                                        {photo.description}
-                                        ${photo.price}
+                                    <div className='swipeContent'>
+                                        <div className='photoDesc'>
+                                            {photo.description}
+                                            ${photo.price}
+                                        </div>
                                         <button onClick={() => this.addToCart(photo.id)}>Add To Cart</button>
                                         <Link to={`/photo/${photo.id}`}>
                                             <button>View</button>

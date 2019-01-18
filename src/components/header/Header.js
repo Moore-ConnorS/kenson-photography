@@ -47,18 +47,27 @@ class Header extends React.Component {
                 <div className='flexbone'>
                     <div className='navBox'>
                         <div className='logo'></div>
-                        <NavLink className='navLink' exact to='/'>
-                            Home
-                        </NavLink>
-                        <NavLink className='navLink' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
-                            Cart
-                        </NavLink>
-                        {this.state.adminCheck ? <NavLink className='navLink' to='/admin'>
-                            Admin
-                        </NavLink> : null}
+                        <h1>Kenson Photography</h1>
+                        <div className='menu'>
+                            <NavLink className='link' exact to='/'>
+                                <div className='navLink'>
+                                    Home
+                            </div>
+                            </NavLink>
+                            <NavLink className='link' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
+                                <div className='navLink'>
+                                    Cart
+                            </div>
+                            </NavLink>
+                            {this.state.adminCheck ? <NavLink className='link' to='/admin'>
+                                <div className='navLink'>
+                                    Admin
+                            </div>
+                            </NavLink> : null}
+                        </div>
                     </div>
                     <div className='userContainer'>
-                        {this.state.user ? <h4>{this.state.user.name}</h4> : <button className='headerButton' onClick={this.login}>Log In</button>}
+                        {this.state.user ? <h3>{this.state.user.name}</h3> : <button className='headerButton' onClick={this.login}>Log In</button>}
                         <NavLink to='/'>
                             {this.state.user ? <button className='headerButton' onClick={this.logout}>Logout</button> : null}
                         </NavLink>

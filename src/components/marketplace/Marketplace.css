@@ -13,8 +13,8 @@
 .photoContainer {
     width: 600px;
     height: 500px;
-    padding: 10px;
-    font-family: 'Nunito sans';
+    padding: 10px;    
+    border: 1px solid red;
 
     display: flex;
     flex-direction: column;
@@ -23,14 +23,23 @@
 }
 
 .marketImgCont {
-    width: 400px;
-    height: 300px;
+    width: 600px;
+    height: 500px;
+    /* border: 1px solid blue; */
 }
 
 .photo {
-    height: 300px;
+    height: 500px;
     margin-bottom: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    border-radius: 10px;
 }
+
+.photoDesc {
+    font-family: 'Nunito sans';
+}
+
+/* --------- Slideshow Component -------------------- */
 
 .slickCont {
     width: 100%;
@@ -46,20 +55,41 @@
     box-shadow: 0px 4px 8px rgba(0,0,0,0.4)
 }
 
+/* --------- Market Image Interactivity -------------------- */
+
 .overlay {
     bottom: 0;
     left: 100%;
     right: 0;
-    background-color: #008CBA;
+    background-color: rgba(31, 90, 31, 0.9);
+    border-radius: 10px;
     overflow: hidden;
-    width: 0;
+    width: 0%;
     height: 100%;
-    transition: .5s ease;
+    opacity: 0;
+    transition: .7s;
     color: white;
     text-decoration: none;
+    position: relative;
+  }
+
+  .swipeContent {
+      opacity: 0;
+      transition: 0s;
+      transition-delay: 0s;
   }
   
   .marketImgCont:hover .overlay {
-    width: 100%;
-    left: 0;
+      width: 100%;
+      left: 0%;
+      opacity: 1;
+    }
+    
+
+  .marketImgCont:hover .swipeContent {
+    opacity: 1;
+    transition: .2s;
+    transition-delay: .6s;
   }
+
+

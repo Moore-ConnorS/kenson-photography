@@ -1,11 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Kenson Photography",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "nature-logos-4.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/jpg"
     }
   ],
   "start_url": ".",

@@ -11,19 +11,39 @@ header {
     flex-direction: column;
 }
 
-h4 {
+h1 {
+    font-family: 'Nunito sans';
+}
+
+h3 {
     margin: 5px;
+}
+
+.link {
+    text-decoration: none;
 }
 
 .headerButton {
     font-size: 15px;
     font-weight: bold;
-    height: 25px;
+    color: white;
+    height: 30px;
     width: 75px;
     border-radius: 3px;
+    transition: .5s;
+    border: .5px solid rgb(131, 131, 131);
 
-    background-color: rgba(25, 112, 25, 0.5);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3)
+    background-color: rgba(25, 112, 25, 0.8);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3)
+}
+
+.headerButton:hover {
+    position: relative;
+    /* left: -5px;
+    top: -5px; */
+    transform: translateY(-3px) translateX(-3px);
+    box-shadow: 4px 7px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(14, 65, 14, 0.829) 
 }
 
 .flexbone {
@@ -43,16 +63,45 @@ h4 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    /* border: solid 1px red; */
+    /* border: solid 1px blue; */
 
     position: relative;
 }
 
+.menu {
+    padding-left: 5%;
+    display: flex;
+    justify-content: center;
+}
+
 .navLink {
+    height: 25px;
+    width: 60px;
+    margin: 25px;
+    padding: 10px;
+    
     text-decoration: none;
-    color: black;
-    margin: 10px;
-    font-family: 'Nunito sans'
+    color: white;
+    font-family: 'Nunito sans';
+    font-size: 20px;
+    font-weight: bold;
+
+    background-color: rgba(6, 116, 6, 0.8);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    position: relative;
+    border: .5px solid rgb(136, 136, 136);
+
+    transition: .5s ease;
+}
+
+.navLink:hover {
+    position: relative;
+    /* left: -5px;
+    top: -5px; */
+    transform: translateY(-3px) translateX(-3px);
+    box-shadow: 4px 7px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(14, 65, 14, 0.829)
 }
 
 .userContainer {

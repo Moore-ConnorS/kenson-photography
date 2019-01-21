@@ -11,10 +11,20 @@ input {
 }
 
 .admin {
+
+    margin: 15px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.adminItems {
+    margin: 10px;
+
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
 }
 
 .editContainer {

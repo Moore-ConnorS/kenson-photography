@@ -106,7 +106,7 @@ export default class Admin extends Component {
         console.log(this.state.img)
         const photoDisplay = photos.map(photo => {
             return (
-                <div key={photo.id}>
+                <div className='adminItems' key={photo.id}>
                     <img className='photo' alt='from database' src={photo.img} />
                     <br />
                     {photo.description}

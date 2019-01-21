@@ -14,7 +14,6 @@ export default class Slideshow extends Component {
             autoplaySpeed: 4000,
             cssEase: "linear"
         };
-        console.log(this.props.photos)
         const photoSlick = this.props.photos.map((photo, i) => {
             return (
                 <div key={i}>

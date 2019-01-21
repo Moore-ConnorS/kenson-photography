@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Marketplace.css';
-import Slider from 'react-slick';
 import Slideshow from './Slideshow'
 
 export default class Marketplace extends Component {
@@ -62,14 +61,14 @@ export default class Marketplace extends Component {
             <div>Loading...</div>
 
         return (
-            <body>
+            <div className='app'>
                 <div>
                     <Slideshow photos={photos} />
                 </div>
                 <div className='marketBox'>
                     {photoDash}
                 </div>
-            </body>
+            </div>
         )
     }
 }

@@ -21,7 +21,8 @@ module.exports = {
         const db = req.app.get('db')
         db.add_photo([
             req.body.img,
-            req.body.description
+            req.body.description,
+            req.body.price
         ]).then(() => {
             res.send()
         }).catch(err => {

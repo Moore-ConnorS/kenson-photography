@@ -11,8 +11,6 @@ module.exports = {
 
     addCart: (req, res) => {
         const db = req.app.get('db')
-        console.log('req.body add cart', req.body)
-        console.log('req.session.user', req.session.user)
         db.add_cart([
             req.session.user.id,
             req.params.id

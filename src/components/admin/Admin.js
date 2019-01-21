@@ -13,7 +13,7 @@ export default class Admin extends Component {
             photo: [],
             modalUno: false,
             modalTwo: false,
-            imgUrl: '',
+            img: '',
             description: '',
             price: 0
         }
@@ -56,7 +56,7 @@ export default class Admin extends Component {
 
     handleImg = (e) => {
         this.setState({
-            imgUrl: e.target.value
+            img: e.target.value
         })
     }
 
@@ -103,6 +103,7 @@ export default class Admin extends Component {
     render() {
         const { photos } = this.state
         // console.log(photos)
+        console.log(this.state.img)
         const photoDisplay = photos.map(photo => {
             return (
                 <div key={photo.id}>
@@ -117,7 +118,7 @@ export default class Admin extends Component {
             )
         })
         return (
-            <div>
+            <div className='admin'>
                 {photoDisplay}
                 <Modal isOpen={this.state.modalUno} onRequestClose={this.closeModalUno}>
                     <button onClick={this.closeModalUno}>Close</button>
@@ -128,11 +129,11 @@ export default class Admin extends Component {
                     />
                 </Modal>
                 <button onClick={this.openModalTwo}>Add Photo</button>
-                <Modal isOpen={this.state.modalTwo} onRequestClose={this.closeModalTwo}>
+                <Modal className='add' isOpen={this.state.modalTwo} onRequestClose={this.closeModalTwo}>
                     <button onClick={this.closeModalTwo}>Close</button>
-                    Image Url:<input value={this.state.imgUrl} onChange={(e) => this.handleImg(e)} />
-                    Image Description:<input value={this.state.description} onChange={(e) => this.handleDescription(e)} />
-                    Image Price:<input value={this.state.price} onChange={(e) => this.handlePrice(e)} />
+                    Image Url:<textarea className='addInput' value={this.state.img} onChange={(e) => this.handleImg(e)} />
+                    Image Description:<textarea className='addInput' value={this.state.description} onChange={(e) => this.handleDescription(e)} />
+                    Image Price:<input className='addPrice' value={this.state.price} onChange={(e) => this.handlePrice(e)} />
                     <button onClick={this.addPhoto}>Add</button>
                 </Modal>
             </div >

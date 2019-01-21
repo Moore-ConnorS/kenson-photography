@@ -9,6 +9,7 @@ class Header extends React.Component {
         super()
         this.state = {
             user: [],
+            cart: [],
             adminCheck: false,
             toggle: false
         }
@@ -50,22 +51,24 @@ class Header extends React.Component {
     }
 
     render() {
-        console.log('toggler', this.state.toggle)
+        console.log(this.state.user)
         return (
-            <body>
+            <div className='app'>
 
                 <header>
                     <div className='flexbone'>
                         <div className='navBox'>
                             <div className='logo'></div>
                             <NavLink className='link' exact to='/'>
-                                <h1>Kenson Photography</h1>
+                                <div className='titleBox'>
+                                    <h1>Kenson Photography</h1>
+                                </div>
                             </NavLink>
                             <div className='menu'>
                                 <NavLink className='link' exact to='/'>
                                     <div className='navLink'>
                                         Home
-                            </div>
+                                    </div>
                                 </NavLink>
                                 <NavLink className='link' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
                                     <div className='navLink'>
@@ -81,9 +84,12 @@ class Header extends React.Component {
                         </div>
                         <div className='userContainer'>
                             {this.state.user ? <h3>{this.state.user.name}</h3> : <button className='headerButton' onClick={this.login}>Log In</button>}
-                            <NavLink to='/'>
-                                {this.state.user ? <button className='headerButton' onClick={this.logout}>Logout</button> : null}
-                            </NavLink>
+                            <div className='logCart'>
+                                {this.state.user ? <div className='cartLogoBox'><div className='cartLogo'></div></div> : null}
+                                <NavLink to='/'>
+                                    {this.state.user ? <button className='headerButton' onClick={this.logout}>Logout</button> : null}
+                                </NavLink>
+                            </div>
                         </div>
                         {/* ----------------- Responsive Hamburger Menu ----------------------- */}
                         <div className='burgerMenu' onClick={this.toggler}></div>
@@ -115,7 +121,7 @@ class Header extends React.Component {
                         </NavLink> : null}
                     </div>
                 </div>
-            </body>
+            </div>
         )
     }
 }

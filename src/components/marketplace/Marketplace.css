@@ -1,4 +1,4 @@
-body {
+.app {
     max-width: 100%;
     overflow-x: hidden;
 }
@@ -57,6 +57,7 @@ body {
     width: 100px;
     border-radius: 3px;
     font-family: 'Nunito sans';
+    outline: none;
     color: white;
     background-color: rgba(25, 112, 25, 0.8);
     font-size: 20px;
@@ -134,6 +135,11 @@ body {
     opacity: 1;
     transition: .2s;
     transition-delay: .6s;
+  }
+
+  .overlay:active{
+      transition: .1s;
+      background-color: rgba(37, 92, 37, 0.836);
   }
 
   @media (max-width: 1360px){

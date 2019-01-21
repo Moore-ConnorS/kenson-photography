@@ -10,12 +10,19 @@ export default class Cart extends Component {
         super()
         this.state = {
             items: [],
+            user: [],
             orderTotal: 0
         }
     }
 
     componentDidMount() {
         this.getCart()
+
+        axios.get('/api/user-data').then((res) => {
+            this.setState({
+                user: res.data
+            })
+        })
     }
 
     getCart = () => {
@@ -23,7 +30,7 @@ export default class Cart extends Component {
             const total = res.data.map(item => {
                 return +item.price
             })
-            const findTotal = '$' + total.reduce((a, c) => {
+            const findTotal = total.reduce((a, c) => {
                 return a + c
             }, 0)
             console.log('findTotal', findTotal)
@@ -65,6 +72,7 @@ export default class Cart extends Component {
 
 
     render() {
+        console.log(this.state.items)
         const { items, orderTotal } = this.state
         const cartDash = items.length ? items.map(item => {
             return (
@@ -78,7 +86,7 @@ export default class Cart extends Component {
                     </div>
                 </div>
             )
-        }) : <h2>Loading...</h2>
+        }) : <h2>Go Get Something...</h2>
         return (
             <div>
                 <br />
@@ -89,7 +97,7 @@ export default class Cart extends Component {
                 <div className='bottomCart'>
                     <StripeCheckout
                         ComponentClass="stripe"
-                        email='email@email.com'
+                        email={this.state.user.email}
                         amount={this.state.orderTotal * 100}
                         description=""
                         token={this.onToken}
@@ -97,7 +105,7 @@ export default class Cart extends Component {
                         //Publishable key
                         stripeKey={process.env.REACT_APP_STRIPE_KEY}
                     />
-                    <h2>Total: {orderTotal}</h2>
+                    <h2>Total: ${orderTotal}</h2>
                 </div>
             </div>
         )

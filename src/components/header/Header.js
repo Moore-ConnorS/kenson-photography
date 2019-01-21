@@ -52,7 +52,7 @@ class Header extends React.Component {
     render() {
         console.log('toggler', this.state.toggle)
         return (
-            <div>
+            <body>
 
                 <header>
                     <div className='flexbone'>
@@ -105,7 +105,7 @@ class Header extends React.Component {
                         </NavLink>
                         <NavLink className='link' to={this.state.user ? `/cart/${this.state.user.id}` : '/prints'}>
                             <div className='navLink'>
-                                Cart
+                                {this.state.user ? 'Cart' : <div style={{ fontSize: '16px', margin: '-7px' }}>Login to Shop</div>}
                             </div>
                         </NavLink>
                         {this.state.adminCheck ? <NavLink className='link' to='/admin'>
@@ -115,7 +115,7 @@ class Header extends React.Component {
                         </NavLink> : null}
                     </div>
                 </div>
-            </div>
+            </body>
         )
     }
 }

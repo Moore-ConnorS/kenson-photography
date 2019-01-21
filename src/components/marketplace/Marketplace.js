@@ -62,14 +62,14 @@ export default class Marketplace extends Component {
             <div>Loading...</div>
 
         return (
-            <div>
+            <body>
                 <div>
                     <Slideshow photos={photos} />
                 </div>
                 <div className='marketBox'>
                     {photoDash}
                 </div>
-            </div>
+            </body>
         )
     }
 }

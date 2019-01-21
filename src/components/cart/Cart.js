@@ -23,7 +23,7 @@ export default class Cart extends Component {
             const total = res.data.map(item => {
                 return +item.price
             })
-            const findTotal = total.reduce((a, c) => {
+            const findTotal = '$' + total.reduce((a, c) => {
                 return a + c
             }, 0)
             console.log('findTotal', findTotal)
@@ -66,36 +66,38 @@ export default class Cart extends Component {
 
     render() {
         const { items, orderTotal } = this.state
-        const cartDash = items.map(item => {
+        const cartDash = items.length ? items.map(item => {
             return (
                 <div key={item.id}>
                     <div className='itemContainer'>
-                        <img src={item.img} />
-                        <button onClick={() => this.deleteCart(item.id)}>Delete</button>
-                        <p>{item.price}</p>
+                        <img className='cartImg' src={item.img} />
+                        <div>
+                            <button className='cartDelete' onClick={() => this.deleteCart(item.id)}>Remove</button>
+                            <h2>${item.price}</h2>
+                        </div>
                     </div>
                 </div>
             )
-        })
+        }) : <h2>Loading...</h2>
         return (
             <div>
-                {/* <button onClick={this.addOrder}>Purchase</button> */}
-                {/* <button onClick={this.addOrder}> */}
-                <StripeCheckout
-                    ComponentClass="stripe"
-                    email='email@email.com'
-                    amount={this.state.orderTotal * 100}
-                    description=""
-                    token={this.onToken}
-                    allowRememberMe={false}
-                    //Publishable key
-                    stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                />
-                {/* </button> */}
                 <br />
-                Total: {orderTotal}
                 <div className='cartContainer'>
                     {cartDash}
+                </div>
+                <div className='line'></div>
+                <div className='bottomCart'>
+                    <StripeCheckout
+                        ComponentClass="stripe"
+                        email='email@email.com'
+                        amount={this.state.orderTotal * 100}
+                        description=""
+                        token={this.onToken}
+                        allowRememberMe={false}
+                        //Publishable key
+                        stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                    />
+                    <h2>Total: {orderTotal}</h2>
                 </div>
             </div>
         )

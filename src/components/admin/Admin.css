@@ -10,6 +10,20 @@ input {
     font-size: 20px;
 }
 
+button {
+    height: 25px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.delete {
+    background-color: rgba(255, 0, 0, 0.582);
+}
+
+.edit {
+    background-color: rgba(0, 0, 255, 0.585);
+}
+
 .admin {
 
     margin: 15px;
@@ -25,6 +39,7 @@ input {
     background-color: beige;
     display: flex;
     flex-direction: column;
+
 }
 
 .editContainer {

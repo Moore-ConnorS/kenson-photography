@@ -251,6 +251,10 @@ h3 {
         font-size: 20px;
     }
 
+    .titleBox {
+        width: 225px;
+    }
+
     .resMenu{
         left: 60%
     }

@@ -26,15 +26,14 @@ export default class SinglePhoto extends Component {
         const { photo } = this.state
         const singlePhoto = photo.length ? photo.map(photo => {
             return (
-                <div key={photo.id}>
+                <div className='displayBox' key={photo.id}>
                     <img className='singlePhoto' src={photo.img} />
-                    <br />
-                    {photo.description}
+                    <h2>{photo.description}</h2>
                 </div>
             )
         }) : <div>Loading...</div>
         return (
-            <div>
+            <div className='body' >
                 {singlePhoto}
             </div>
         )

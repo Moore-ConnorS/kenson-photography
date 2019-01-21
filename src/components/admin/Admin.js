@@ -112,8 +112,8 @@ export default class Admin extends Component {
                     {photo.description}
                     <br />
                     ${photo.price}
-                    <button onClick={() => { this.deletePhotos(photo.id) }}>Delete</button>
-                    <button onClick={() => this.openModalUno(photo.id)}>Edit</button>
+                    <button className='edit' onClick={() => this.openModalUno(photo.id)}>Edit</button>
+                    <button className='delete' onClick={() => { this.deletePhotos(photo.id) }}>Delete</button>
                 </div >
             )
         })

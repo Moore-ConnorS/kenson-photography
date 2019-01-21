@@ -85,6 +85,7 @@
 .slickImg {
     margin: 0 auto;
     height: 800px;
+    border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.4)
 }
 
@@ -139,6 +140,7 @@
 
   .overlay:active{
       transition: .1s;
+      transform: translateY(-5px);
       background-color: rgba(37, 92, 37, 0.836);
   }
 
